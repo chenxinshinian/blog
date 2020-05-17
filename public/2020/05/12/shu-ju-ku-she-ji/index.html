@@ -1,0 +1,1124 @@
+<!DOCTYPE HTML>
+<html lang="zh-CN">
+
+
+<head>
+    <meta charset="utf-8">
+    <meta name="keywords" content="数据库设计, Blog, SteeleTo, Hexo, Matery, chenxinshinian, 博客, 个人博客, 码农, 沉心十年, 王彬, 拾年, shinian">
+    <meta name="description" content="
+为什么要进行数据库设计谈到数据库设计首先要弄明白什么是“数据库设计”，我们可以打一个不太恰当的比喻:把数据库应用程序的设计看作是在建立一座大厦，那么建立大厦之前通常要对大厦的整体结构进行设计，并且汇聚成图纸然后应对图纸再对大厦进行施工，那">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <meta name="renderer" content="webkit|ie-stand|ie-comp">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="format-detection" content="telephone=no">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <title>数据库设计 | 拾年&#39;blog</title>
+    <link rel="icon" type="image/x-icon, image/vnd.microsoft.icon" href="/medias/wangbin/favicon.ico">
+
+    <link rel="stylesheet" type="text/css" href="/libs/awesome/css/all.css">
+    <link rel="stylesheet" type="text/css" href="/libs/materialize/materialize.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/aos/aos.css">
+    <link rel="stylesheet" type="text/css" href="/libs/animate/animate.min.css">
+    <link rel="stylesheet" type="text/css" href="/libs/lightGallery/css/lightgallery.min.css">
+    <link rel="stylesheet" type="text/css" href="/css/matery.css">
+    <link rel="stylesheet" type="text/css" href="/css/my.css">
+    
+    <script src="/libs/jquery/jquery.min.js"></script>
+    
+<meta name="generator" content="Hexo 4.2.0"><link rel="alternate" href="/atom.xml" title="拾年'blog" type="application/atom+xml">
+<link rel="stylesheet" href="/css/prism-tomorrow.css" type="text/css"></head>
+
+
+<body>
+    <header class="navbar-fixed">
+    <nav id="headNav" class="bg-color nav-transparent">
+        <div id="navContainer" class="nav-wrapper head-container">
+            <div class="brand-logo">
+                <a href="/" class="waves-effect waves-light">
+                    
+                    <img src="/medias/wangbin/logo.png" class="logo-img" alt="LOGO">
+                    
+                    <span class="logo-span">拾年'blog</span>
+                </a>
+            </div>
+            
+
+<a href="#" data-target="mobile-nav" class="sidenav-trigger button-collapse"><i class="fas fa-bars"></i></a>
+<ul class="right nav-menu">
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/" class="waves-effect waves-light">
+      
+      <i class="fas fa-home" style="zoom: 0.6;"></i>
+      
+      <span>首页</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/tags" class="waves-effect waves-light">
+      
+      <i class="fas fa-tags" style="zoom: 0.6;"></i>
+      
+      <span>标签</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/categories" class="waves-effect waves-light">
+      
+      <i class="fas fa-bookmark" style="zoom: 0.6;"></i>
+      
+      <span>分类</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/archives" class="waves-effect waves-light">
+      
+      <i class="fas fa-archive" style="zoom: 0.6;"></i>
+      
+      <span>归档</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/about" class="waves-effect waves-light">
+      
+      <i class="fas fa-user-circle" style="zoom: 0.6;"></i>
+      
+      <span>关于</span>
+    </a>
+    
+  </li>
+  
+  <li class="hide-on-med-and-down nav-item">
+    
+    <a href="/contact" class="waves-effect waves-light">
+      
+      <i class="fas fa-comments" style="zoom: 0.6;"></i>
+      
+      <span>留言板</span>
+    </a>
+    
+  </li>
+  
+  <li>
+    <a href="#searchModal" class="modal-trigger waves-effect waves-light">
+      <i id="searchIcon" class="fas fa-search" title="搜索" style="zoom: 0.85;"></i>
+    </a>
+  </li>
+</ul>
+
+<div id="mobile-nav" class="side-nav sidenav">
+
+    <div class="mobile-head bg-color">
+        
+        <img src="/medias/wangbin/logo.png" class="logo-img circle responsive-img">
+        
+        <div class="logo-name">拾年'blog</div>
+        <div class="logo-desc">
+            
+            享受编程和技术所带来的的快乐 － Coding Your Ambition
+            
+        </div>
+    </div>
+
+    
+
+    <ul class="menu-list mobile-menu-list">
+        
+        <li class="m-nav-item">
+	  
+		<a href="/" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-home"></i>
+			
+			首页
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/tags" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-tags"></i>
+			
+			标签
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/categories" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-bookmark"></i>
+			
+			分类
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/archives" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-archive"></i>
+			
+			归档
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/about" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-user-circle"></i>
+			
+			关于
+		</a>
+          
+        </li>
+        
+        <li class="m-nav-item">
+	  
+		<a href="/contact" class="waves-effect waves-light">
+			
+			    <i class="fa-fw fas fa-comments"></i>
+			
+			Contact
+		</a>
+          
+        </li>
+        
+        
+    </ul>
+</div>
+
+        </div>
+
+        
+    </nav>
+
+</header>
+
+    
+
+
+
+<div class="bg-cover pd-header post-cover" style="background-image: url('https://chenxinshinian.oss-cn-beijing.aliyuncs.com/img/d22bbcc815668a3244e4237c1731b98d8ee370a3.jpg')">
+    <div class="container" style="right: 0px;left: 0px;">
+        <div class="row">
+            <div class="col s12 m12 l12">
+                <div class="brand">
+                    <h1 class="description center-align post-title">数据库设计</h1>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+<main class="post-container content">
+
+    
+    <link rel="stylesheet" href="/libs/tocbot/tocbot.css">
+<style>
+    #articleContent h1::before,
+    #articleContent h2::before,
+    #articleContent h3::before,
+    #articleContent h4::before,
+    #articleContent h5::before,
+    #articleContent h6::before {
+        display: block;
+        content: " ";
+        height: 100px;
+        margin-top: -100px;
+        visibility: hidden;
+    }
+
+    #articleContent :focus {
+        outline: none;
+    }
+
+    .toc-fixed {
+        position: fixed;
+        top: 64px;
+    }
+
+    .toc-widget {
+        width: 345px;
+        padding-left: 20px;
+    }
+
+    .toc-widget .toc-title {
+        margin: 35px 0 15px 0;
+        padding-left: 17px;
+        font-size: 1.5rem;
+        font-weight: bold;
+        line-height: 1.5rem;
+    }
+
+    .toc-widget ol {
+        padding: 0;
+        list-style: none;
+    }
+
+    #toc-content {
+        height: calc(100vh - 250px);
+        overflow: auto;
+    }
+
+    #toc-content ol {
+        padding-left: 10px;
+    }
+
+    #toc-content ol li {
+        padding-left: 10px;
+    }
+
+    #toc-content .toc-link:hover {
+        color: #42b983;
+        font-weight: 700;
+        text-decoration: underline;
+    }
+
+    #toc-content .toc-link::before {
+        background-color: transparent;
+        max-height: 25px;
+    }
+
+    #toc-content .is-active-link {
+        color: #42b983;
+    }
+
+    #toc-content .is-active-link::before {
+        background-color: #42b983;
+    }
+
+    #floating-toc-btn {
+        position: fixed;
+        right: 15px;
+        bottom: 76px;
+        padding-top: 15px;
+        margin-bottom: 0;
+        z-index: 998;
+    }
+
+    #floating-toc-btn .btn-floating {
+        width: 48px;
+        height: 48px;
+    }
+
+    #floating-toc-btn .btn-floating i {
+        line-height: 48px;
+        font-size: 1.4rem;
+    }
+</style>
+<div class="row">
+    <div id="main-content" class="col s12 m12 l9">
+        <!-- 文章内容详情 -->
+<div id="artDetail">
+    <div class="card">
+        <div class="card-content article-info">
+            <div class="row tag-cate">
+                <div class="col s7">
+                    
+                    <div class="article-tag">
+                        
+                            <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1/">
+                                <span class="chip bg-color">数据库设计</span>
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+                <div class="col s5 right-align">
+                    
+                    <div class="post-cate">
+                        <i class="fas fa-bookmark fa-fw icon-category"></i>
+                        
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
+                                数据库
+                            </a>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+
+            <div class="post-info">
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-minus fa-fw"></i>发布日期:&nbsp;&nbsp;
+                    2020-05-12
+                </div>
+                
+
+                
+                <div class="post-date info-break-policy">
+                    <i class="far fa-calendar-check fa-fw"></i>更新日期:&nbsp;&nbsp;
+                    2020-05-17
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-file-word fa-fw"></i>文章字数:&nbsp;&nbsp;
+                    3.8k
+                </div>
+                
+
+                
+                <div class="info-break-policy">
+                    <i class="far fa-clock fa-fw"></i>阅读时长:&nbsp;&nbsp;
+                    12 分
+                </div>
+                
+				
+                
+                    <div id="busuanzi_container_page_pv" class="info-break-policy">
+                        <i class="far fa-eye fa-fw"></i>阅读次数:&nbsp;&nbsp;
+                        <span id="busuanzi_value_page_pv"></span>
+                    </div>
+				
+            </div>
+            
+        </div>
+        <hr class="clearfix">
+        <div class="card-content article-card-content">
+            <div id="articleContent">
+                <p><img src="https://chenxinshinian.oss-cn-beijing.aliyuncs.com/img/d22bbcc815668a3244e4237c1731b98d8ee370a3.jpg"></p>
+<h4 id="为什么要进行数据库设计"><a href="#为什么要进行数据库设计" class="headerlink" title="为什么要进行数据库设计"></a>为什么要进行数据库设计</h4><p>谈到数据库设计首先要弄明白什么是“数据库设计”，我们可以打一个不太恰当的比喻:把数据库应用程序的设计看作是在建立一座大厦，那么建立大厦之前通常要对大厦的整体结构进行设计，并且汇聚成图纸然后应对图纸再对大厦进行施工，那么数据库设计的过程就相当于是我们建造大厦的过程。首先我们也要对数据库的整体结构进行图形化的设计，然后再根据图形来对数据库结构进行建立。那么简单来说：<br>数据库设计就是根据业务系统的具体需求结合我们所选的DBMS(数据库管理系统),为这个业务系统构造出最优的数据库存储模型，并建立好数据库中的表结构及表与表之间的关联关系的过程。使之能<strong>有效</strong>的对应系统中的数据进行存储，并可以<strong>高效的</strong>的对已经存储的数据进行访问。</p>
+<p>常用的数据库管理系统有：MySQL、Oracle、SQLServer、Pgsql这些都是目前主流的关系性数据库系统<br>已经现在流行的NoSQL系统：Mongo、Memcache、Redis</p>
+<p>注意，我们要达到的目的是<strong>对数据有效的存储以及高效的访问</strong>。那么应用系统中所产生的数据有多种的存储方式。首先我们可以把所有的数据都存储在同一张表中，虽然说这样达到了存储的目的但是却不一定能达到高效访问的目的。</p>
+<h4 id="好的数据库设计对比糟糕的数据库设计"><a href="#好的数据库设计对比糟糕的数据库设计" class="headerlink" title="好的数据库设计对比糟糕的数据库设计"></a>好的数据库设计对比糟糕的数据库设计</h4><p>一个优良的数据库设计：<br>1)可以减少数据冗余<br>2)避免数据维护异常<br>3)节约存储空间<br>4)高效的访问<br>反之一个糟糕的数据库设计：<br>1)会存在大量数据冗余<br>2)存在数据插入，更新，删除的异常<br>3）浪费大量存储空间<br>4）访问数据低效</p>
+<p>数据库系统是应用系统存储数据的关键组成部分，是系统稳定运行的基础，决定着系统是否可以高效稳定的运行，还以刚才大厦的例子来说，我们的数据库就相当于是这个大厦的地基，如果大厦的地基可以稳固，那么大厦就可以建的很高，如果地基没有建好那么大厦就很容易倒塌，同样如果数据库没有设计好的话那么系统就不会太稳定。这种情况可能在最终我们系统访问量很小数据也不多的情况下不明显，但是随着我们数据库的数据越来越多访问量的越来越大，那么这种数据库设计的缺陷就会显现出来。<br>例如一家初创企业，在初创期开发人员并不多并且也没有在专业的DBA，这样他们所设计的数据库仅仅是以存储数据为目的，达到数据存储后就没有进一步进行调优，这就会使得这家企业业务发展起来的时候，数量非常大的时候就会在一些比较重要的促销时经常会出现系统死机的情况，这不但影响的公司业务的正常运行，并且对今后的开发也在造成的非常大的影响。所以说我们很有必要在系统设计的开始就对数据库进行一个良好的设计，这样不但对系统稳定带来好处，并且对今后的维护开发已经业务运行都有非常大的好处。</p>
+<h4 id="数据库设计步骤"><a href="#数据库设计步骤" class="headerlink" title="数据库设计步骤"></a>数据库设计步骤</h4><p>如果你在工作中要对一些慢查询进行调优工作，但是慢查询是由于数据库结构设计的不合理产生的。那么我们进行慢查询调整的时候就必然要对数据库的结构进行调整，而当我们的数据库已经在生产环境运行了一段时间的话，我们要再想对数据库结构进行调整就必然会影响业务的正常运行，这是谁都不希望看到的，所以我们很有必要在数据库设计的最终就把数据库设计成一个简洁高效的数据库结构。</p>
+<p>数据库设计的步骤：<br><strong>需求分析-&gt;逻辑设计-&gt;物理设计-&gt;维护优化</strong></p>
+<p>和应用程序设计一样，数据库设计最初也要进行需求分析，只不过数据库的需求分析和应用程序的需求分析侧重点不太一样。数据库设计的需求分析的侧重点主要是：<br>应用主要在数据库中存储的数据是什么？而这些数据又有哪些属性？这些数据和属性各自的特点又有那些？</p>
+<p>我们只要了解这些东西，那么就对我们后边的数据库设计有非常大的帮助</p>
+<p>需求分析之后是逻辑设计，在逻辑中我们主要是通过ER图这种工具对数据库进行逻辑建模。这个逻辑建模之所以叫逻辑建模就是因为他跟我们所选的具体的具体数据库管理系统是没有关系的，我们进行逻辑建模之后是可以在大多数数据库管理系统中在进行表结构的设计的。</p>
+<p>逻辑设计后就是物理设计了，在物理设计中我们就要区考虑我们使用的数据库管理系统是什么。因为就目前来说我们常用的数据库管理系统如,MySQL、Oracle、SQLServer、Pgsql这几种数据库系统他们<br>每一种都有自身的特点，而我们为了把数据库管理系统的效率发挥到最高，那么我们在进行物理设计的时候就要充分的考虑到每一种数据库管理系统具体的特点是什么，这个时候在把逻辑设计中所建立的逻辑模型转换为我们需要的物理模型，这样我们就可以达到数据库效率的最优化。</p>
+<p>物理设计之后就是维护和优化，在维护和优化过程中我们要对新的需求进行表结构的建立或者索引的优化在或者是数据量大到一定程度的时候我们可能要考虑表的拆分。但是在维护和优化中有一个非常重要的地方需要在注意，就是说在最初我们应用上线的在最开始我们的数据库设计是非常完美的，非常简洁也非常高效，但是当需求不断的累加，在时候在后面的开发过程中我们就不注意数据库的设计问题，这样随着应用程序上线的时间越来久需求累加越来越多，我们应用数据库结构也会越来越复杂，这些都属于维护优化工作没有做好的原因。所以在维护优化过程中也要注意，当接到新的需求的时候也要通过以上需求分析、逻辑分析、物理设计这几步，完成之后在进行具体的建表工作，在这样可以就可以保证数据库结构永远是最优的。</p>
+<h4 id="为什么要进行需求分析"><a href="#为什么要进行需求分析" class="headerlink" title="为什么要进行需求分析"></a>为什么要进行需求分析</h4><p>实际工作中一些开发人员都是拿到一个需求之后并不会进行需求分析而是直接进行表结构设计。往往这样设计出的数据库并不会在最优化的。所以有必要在数据库之前进行需求分析。</p>
+<p>在需求分析中我们要先搞清楚：</p>
+<p>在这个系统中我们所存储的数据有哪些?<br>这些数据又有什么样的特点？<br>比如说，有些数据是具有时效性的而有些数据是不具有时效性的。对于一些时效性的数据可以采取过期清理或者归档的方式来进行存储。<br>了解数据的生命周期<br>还有一些数据增长很快数据量也很大，但是这些数据并不是核心数据，对于这些数据我们也可以进行分库分表的方式进行存储。在实际工作中一些开发人员希望把一些日志类的数据存到数据库中，以DBA的角度来看这种数据是非常不是和存储在数据库中的，首先是因为这种数据增长量非常大，并且并不属于核心数据，所以对于这种数据如果一定要存储到数据库中，可以在进行数据库存储之前可以先定义好这种数据的归档或者清理规则，这样可以随着数据库上线就可以进行数据的归档和清理，如果当这个表増长的非常大的时候在进行归档和清理的时候一定工作量非常大，并且很有可能影响线上的正常使用。</p>
+<h4 id="在需求分析中要搞清楚的一些问题"><a href="#在需求分析中要搞清楚的一些问题" class="headerlink" title="在需求分析中要搞清楚的一些问题"></a>在需求分析中要搞清楚的一些问题</h4><p>在需求分析中首先要搞清楚要在数据库中存储的对象都有什么?<br>这些对象也可以称之为实体。实体及实体之间的关系？<br>实体和数据库表之间的关系是并不是一一对应的而是可以1对1，1对多，多对多，实体之间的关系也是如此<br>实体所包含的属性有什么?<br>这些属性也有各自的特点，比如说那些属性是可以标识出这些实体的，<br>哪些属性或组合可以唯一标识一个实体？<br>那个标识出实体的属性可能是一个也可能是多个或者是多种组合来标识这个实体。具体选用哪一种是需要我们在逻辑设计中考虑的问题，但是在需求分析的时候我们就要把这些属性和属性组合搞清楚。<br>清楚实体所包含的属性之后还要了解出实体的一些特性，比如在存储上有什么样的特性，增长量会是什么样?就比如对一些日志类的实体<br>可能增长比较快，对于这些实体我们就要考虑分库分表的操作或者是按时进行归档，这些内容是我们要在物理设计中考虑的，但是如果在需求分析中没有把这些搞清楚的话，在在物理设计和逻辑设计中就很难对数据库进行分库分表的设计或者归档的设计</p>
+<h4 id="实例演示"><a href="#实例演示" class="headerlink" title="实例演示"></a>实例演示</h4><p>以一个小型的电子商务网站为例，在这个电子商务网站的系统中包括了几个核心模块：用户模块，商品模块，订单模块，购物车模块，供应商模块。</p>
+<p>用户模块主要用于用户登录和保存用户注册信息<br>包括属性：用户名 、密码、电话、邮箱、身份证号、地址、姓名、昵称……<br>可选唯一标识属性：用户名、身份证、电话<br>存储特点：随着系统上线时间逐渐增加，需要永久存储，这就要求在物理设计中考虑对用户模块是否要分库分表的问题</p>
+<p>商品模块用于记录网站中所销售的商品信息<br>包括属性：商品编码、商品名称、商品描述、商品品类、供应商名称、重量、有效期、价格……<br>可选唯一标识属性：（商品名称、供应商名称）、（商品编码）<br>因为一个供应商可能对我们提供多个商品，同时也有可能一个商品由多个供应商提供,所以商品名称和供应商名称的组合才能唯一标识出哪一个供应商提供的哪一个商品<br>存储特点：随着网站经营时间的增长,商品也会越来越多，但是对于某一个供应商的商品来说，如果这个供应商已经不再对我们提供供应的话，对于这些商品我们实际上可以进行一些归档的存储。但是，切记这些商品是不能删除的，因为有可能还会和订单模块相关,所以这些商品是需要永久存储，但是可以对一些不再销售的商品进行一些迁移工作（先迁移到其他表中）这样对我们商品表可以保持一个比较小的数量级，能对搜索查询的效率带来好处</p>
+<p>订单模块用于存储用户订购商品的信息<br>因为订单是属于用户的所以要包括：订单号、用户姓名、用户电话、收货地址、商品编号、商品名称、数量、价格、订单状态、支付状态、订单类型……<br>可选唯一标识属性：（订单号）（用户命名、商品、下单日期）<br>存储特点：随着经营的增长订单表数据会越来越多，订单表需要永久存储，并且很多用户需要查询历史订单记录，所以订单表的查询频率会非常大，所以要考虑分表或者分库的操作</p>
+<p>购物车模块用于存储用户选购的商品信息<br>包括属性：用户名、商品编号、商品名称、商品价格、商品描述、商品分类、加入时间、商品数量……<br>可选唯一标识：（用户名、商品编号、加入时间）、（购物车编号）<br>存储特点：不用永久存储（设置归档、清理规则），购物车的数据有一定的实效性，比如半年内没有被购买的数据进行一些清理操作</p>
+<p>供应商模块用于保存所销售商品的供应商信息<br>包括属性：供应商编号、供应商名称、联系人、电话、营业执照号、地质、法人……<br>可选唯一标识：（供应商编号）（营业执照号）<br>存储特点：永久存储,供应商的数量不会特别多，所以不需要什么策略”</p>
+<p><img src="https://chenxinshinian.oss-cn-beijing.aliyuncs.com/img/20200509065747.png"></p>
+<script>
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return; }
+            const img = document.createElement('img');
+            img.style = 'display:none !important;';
+            img.src = el.dataset.src;
+            img.addEventListener('error', () => {
+              img.remove();
+              el.style.color = 'inherit';
+              el.style.backgroundImage = 'none';
+              el.style.background = 'none';
+            });
+            img.addEventListener('load', () => {
+              img.remove();
+            });
+            document.body.appendChild(img);
+          });
+      </script>
+            </div>
+            <hr/>
+
+            
+
+    <div class="reprint" id="reprint-statement">
+        
+            <div class="reprint__author">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-user">
+                        文章作者:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://chenxinshinian.com" rel="external nofollow noreferrer">拾年</a>
+                </span>
+            </div>
+            <div class="reprint__type">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-link">
+                        文章链接:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    <a href="https://chenxinshinian.com/2020/05/12/shu-ju-ku-she-ji/">https://chenxinshinian.com/2020/05/12/shu-ju-ku-she-ji/</a>
+                </span>
+            </div>
+            <div class="reprint__notice">
+                <span class="reprint-meta" style="font-weight: bold;">
+                    <i class="fas fa-copyright">
+                        版权声明:
+                    </i>
+                </span>
+                <span class="reprint-info">
+                    本博客所有文章除特別声明外，均采用
+                    <a href="https://creativecommons.org/licenses/by/4.0/deed.zh" rel="external nofollow noreferrer" target="_blank">CC BY 4.0</a>
+                    许可协议。转载请注明来源
+                    <a href="https://chenxinshinian.com" target="_blank">拾年</a>
+                    !
+                </span>
+            </div>
+        
+    </div>
+
+    <script async defer>
+      document.addEventListener("copy", function (e) {
+        let toastHTML = '<span>复制成功，请遵循本文的转载规则</span><button class="btn-flat toast-action" onclick="navToReprintStatement()" style="font-size: smaller">查看</a>';
+        M.toast({html: toastHTML})
+      });
+
+      function navToReprintStatement() {
+        $("html, body").animate({scrollTop: $("#reprint-statement").offset().top - 80}, 800);
+      }
+    </script>
+
+
+
+            <div class="tag_share" style="display: block;">
+                <div class="post-meta__tag-list" style="display: inline-block;">
+                    
+                        <div class="article-tag">
+                            
+                                <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1/">
+                                    <span class="chip bg-color">数据库设计</span>
+                                </a>
+                            
+                        </div>
+                    
+                </div>
+                <div class="post_share" style="zoom: 80%; width: fit-content; display: inline-block; float: right; margin: -0.15rem 0;">
+                    <link rel="stylesheet" type="text/css" href="/libs/share/css/share.min.css">
+
+<div id="article-share">
+    
+    
+    <div class="social-share" data-sites="twitter,facebook,google,qq,qzone,wechat,weibo,douban,linkedin" data-wechat-qrcode-helper="<p>微信扫一扫即可分享！</p>"></div>
+    <script src="/libs/share/js/social-share.min.js"></script>
+    
+
+    
+
+</div>
+
+                </div>
+            </div>
+            
+                <style>
+    #reward {
+        margin: 40px 0;
+        text-align: center;
+    }
+
+    #reward .reward-link {
+        font-size: 1.4rem;
+        line-height: 38px;
+    }
+
+    #reward .btn-floating:hover {
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2), 0 5px 15px rgba(0, 0, 0, 0.2);
+    }
+
+    #rewardModal {
+        width: 320px;
+        height: 350px;
+    }
+
+    #rewardModal .reward-title {
+        margin: 15px auto;
+        padding-bottom: 5px;
+    }
+
+    #rewardModal .modal-content {
+        padding: 10px;
+    }
+
+    #rewardModal .close {
+        position: absolute;
+        right: 15px;
+        top: 15px;
+        color: rgba(0, 0, 0, 0.5);
+        font-size: 1.3rem;
+        line-height: 20px;
+        cursor: pointer;
+    }
+
+    #rewardModal .close:hover {
+        color: #ef5350;
+        transform: scale(1.3);
+        -moz-transform:scale(1.3);
+        -webkit-transform:scale(1.3);
+        -o-transform:scale(1.3);
+    }
+
+    #rewardModal .reward-tabs {
+        margin: 0 auto;
+        width: 210px;
+    }
+
+    .reward-tabs .tabs {
+        height: 38px;
+        margin: 10px auto;
+        padding-left: 0;
+    }
+
+    .reward-content ul {
+        padding-left: 0 !important;
+    }
+
+    .reward-tabs .tabs .tab {
+        height: 38px;
+        line-height: 38px;
+    }
+
+    .reward-tabs .tab a {
+        color: #fff;
+        background-color: #ccc;
+    }
+
+    .reward-tabs .tab a:hover {
+        background-color: #ccc;
+        color: #fff;
+    }
+
+    .reward-tabs .wechat-tab .active {
+        color: #fff !important;
+        background-color: #22AB38 !important;
+    }
+
+    .reward-tabs .alipay-tab .active {
+        color: #fff !important;
+        background-color: #019FE8 !important;
+    }
+
+    .reward-tabs .reward-img {
+        width: 210px;
+        height: 210px;
+    }
+</style>
+
+<div id="reward">
+    <a href="#rewardModal" class="reward-link modal-trigger btn-floating btn-medium waves-effect waves-light red">赏</a>
+
+    <!-- Modal Structure -->
+    <div id="rewardModal" class="modal">
+        <div class="modal-content">
+            <a class="close modal-close"><i class="fas fa-times"></i></a>
+            <h4 class="reward-title">你的赏识是我前进的动力</h4>
+            <div class="reward-content">
+                <div class="reward-tabs">
+                    <ul class="tabs row">
+                        <li class="tab col s6 alipay-tab waves-effect waves-light"><a href="#alipay">支付宝</a></li>
+                        <li class="tab col s6 wechat-tab waves-effect waves-light"><a href="#wechat">微 信</a></li>
+                    </ul>
+                    <div id="alipay">
+                        <img src="/medias/wangbin/alipay.jpg" class="reward-img" alt="支付宝打赏二维码">
+                    </div>
+                    <div id="wechat">
+                        <img src="/medias/wangbin/wechat.png" class="reward-img" alt="微信打赏二维码">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    $(function () {
+        $('.tabs').tabs();
+    });
+</script>
+            
+        </div>
+    </div>
+
+    
+        <link rel="stylesheet" href="/libs/gitalk/gitalk.css">
+<link rel="stylesheet" href="/css/my-gitalk.css">
+
+<div class="card gitalk-card" data-aos="fade-up">
+    <div class="comment_headling" style="font-size: 20px; font-weight: 700; position: relative; left: 20px; top: 15px; padding-bottom: 5px;">
+        <i class="fas fa-comments fa-fw" aria-hidden="true"></i>
+        <span>评论</span>
+    </div>
+    <div id="gitalk-container" class="card-content"></div>
+</div>
+
+<script src="/libs/gitalk/gitalk.min.js"></script>
+<script>
+    let gitalk = new Gitalk({
+        clientID: '038aee9e79fe69e19fd5',
+        clientSecret: '1423c1f6eb6082f80b8ebe9c9fc6a3b937e6552c',
+        repo: 'gitalk-comments',
+        owner: 'chenxinshinian',
+        admin: "chenxinshinian",
+        id: '2020-05-12T15-12-22',
+        distractionFreeMode: false  // Facebook-like distraction free mode
+    });
+
+    gitalk.render('gitalk-container');
+</script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+<article id="prenext-posts" class="prev-next articles">
+    <div class="row article-row">
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge left-badge text-color">
+                <i class="fas fa-chevron-left"></i>&nbsp;上一篇</div>
+            <div class="card">
+                <a href="/2020/05/17/shu-ju-ku-wei-hu-he-you-hua/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/19.jpg" class="responsive-img" alt="数据库维护和优化">
+                        
+                        <span class="card-title">数据库维护和优化</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            
+        document.querySelectorAll('.github-emoji')
+          .forEach(el => {
+            if (!el.dataset.src) { return
+                        
+                    </div>
+                    <div class="publish-info">
+                        <span class="publish-date">
+                            <i class="far fa-clock fa-fw icon-date"></i>2020-05-17
+                        </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-user fa-fw"></i>
+                            拾年
+                            
+                        </span>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+        
+        
+        <div class="article col s12 m6" data-aos="fade-up">
+            <div class="article-badge right-badge text-color">
+                下一篇&nbsp;<i class="fas fa-chevron-right"></i>
+            </div>
+            <div class="card">
+                <a href="/2020/05/11/shu-ju-ku-wu-li-she-ji/">
+                    <div class="card-image">
+                        
+                        
+                        <img src="/medias/featureimages/13.jpg" class="responsive-img" alt="数据库物理设计">
+                        
+                        <span class="card-title">数据库物理设计</span>
+                    </div>
+                </a>
+                <div class="card-content article-content">
+                    <div class="summary block-with-text">
+                        
+                            物理设计要做什么
+选择合适的数据库管理系统
+定义数据库、表及字段的命名规范。
+根据所选的DBMS系统选择合适的字段类型。
+反范式化指的是在逻辑设计中已经确立好的非常规范的数据库结构模型，模型没有任何数据冗余，那么在物理设计中可能会为了读效率
+                        
+                    </div>
+                    <div class="publish-info">
+                            <span class="publish-date">
+                                <i class="far fa-clock fa-fw icon-date"></i>2020-05-11
+                            </span>
+                        <span class="publish-author">
+                            
+                            <i class="fas fa-bookmark fa-fw icon-category"></i>
+                            
+                            <a href="/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/" class="post-category">
+                                    数据库
+                                </a>
+                            
+                            
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="card-action article-tags">
+                    
+                    <a href="/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1/">
+                        <span class="chip bg-color">数据库设计</span>
+                    </a>
+                    
+                </div>
+                
+            </div>
+        </div>
+        
+    </div>
+</article>
+
+</div>
+
+
+
+<!-- 代码块功能依赖 -->
+<script type="text/javascript" src="/libs/codeBlock/codeBlockFuction.js"></script>
+
+<!-- 代码语言 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeLang.js"></script>
+
+    
+<!-- 代码块复制 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeCopy.js"></script>
+
+
+<!-- 代码块收缩 -->
+
+<script type="text/javascript" src="/libs/codeBlock/codeShrink.js"></script>
+
+
+<!-- 代码块折行 -->
+
+<style type="text/css">
+code[class*="language-"], pre[class*="language-"] { white-space: pre !important; }
+</style>
+
+    </div>
+    <div id="toc-aside" class="expanded col l3 hide-on-med-and-down">
+        <div class="toc-widget">
+            <div class="toc-title"><i class="far fa-list-alt"></i>&nbsp;&nbsp;目录</div>
+            <div id="toc-content"></div>
+        </div>
+    </div>
+</div>
+
+<!-- TOC 悬浮按钮. -->
+
+<div id="floating-toc-btn" class="hide-on-med-and-down">
+    <a class="btn-floating btn-large bg-color">
+        <i class="fas fa-list-ul"></i>
+    </a>
+</div>
+
+
+<script src="/libs/tocbot/tocbot.min.js"></script>
+<script>
+    $(function () {
+        tocbot.init({
+            tocSelector: '#toc-content',
+            contentSelector: '#articleContent',
+            headingsOffset: -($(window).height() * 0.4 - 45),
+            collapseDepth: Number('0'),
+            headingSelector: 'h2, h3, h4'
+        });
+
+        // modify the toc link href to support Chinese.
+        let i = 0;
+        let tocHeading = 'toc-heading-';
+        $('#toc-content a').each(function () {
+            $(this).attr('href', '#' + tocHeading + (++i));
+        });
+
+        // modify the heading title id to support Chinese.
+        i = 0;
+        $('#articleContent').children('h2, h3, h4').each(function () {
+            $(this).attr('id', tocHeading + (++i));
+        });
+
+        // Set scroll toc fixed.
+        let tocHeight = parseInt($(window).height() * 0.4 - 64);
+        let $tocWidget = $('.toc-widget');
+        $(window).scroll(function () {
+            let scroll = $(window).scrollTop();
+            /* add post toc fixed. */
+            if (scroll > tocHeight) {
+                $tocWidget.addClass('toc-fixed');
+            } else {
+                $tocWidget.removeClass('toc-fixed');
+            }
+        });
+
+        
+        /* 修复文章卡片 div 的宽度. */
+        let fixPostCardWidth = function (srcId, targetId) {
+            let srcDiv = $('#' + srcId);
+            if (srcDiv.length === 0) {
+                return;
+            }
+
+            let w = srcDiv.width();
+            if (w >= 450) {
+                w = w + 21;
+            } else if (w >= 350 && w < 450) {
+                w = w + 18;
+            } else if (w >= 300 && w < 350) {
+                w = w + 16;
+            } else {
+                w = w + 14;
+            }
+            $('#' + targetId).width(w);
+        };
+
+        // 切换TOC目录展开收缩的相关操作.
+        const expandedClass = 'expanded';
+        let $tocAside = $('#toc-aside');
+        let $mainContent = $('#main-content');
+        $('#floating-toc-btn .btn-floating').click(function () {
+            if ($tocAside.hasClass(expandedClass)) {
+                $tocAside.removeClass(expandedClass).hide();
+                $mainContent.removeClass('l9');
+            } else {
+                $tocAside.addClass(expandedClass).show();
+                $mainContent.addClass('l9');
+            }
+            fixPostCardWidth('artDetail', 'prenext-posts');
+        });
+        
+    });
+</script>
+
+    
+
+</main>
+
+
+
+    <footer class="page-footer bg-color">
+    <div class="container row center-align" style="margin-bottom: 15px !important;">
+        <div class="col s12 m8 l8 copy-right">
+            Copyright&nbsp;&copy;
+            <span id="year">2019</span>
+            <a href="https://chenxinshinian.com" target="_blank">拾年</a>
+            |&nbsp;<a href="http://www.beian.miit.gov.cn/" target="_blank">京ICP备19059309号</a>
+            |&nbsp;沉心十年
+            <br>
+            
+            &nbsp;<i class="fas fa-chart-area"></i>&nbsp;站点总字数:&nbsp;<span
+                class="white-color">13.6k</span>&nbsp;字
+            
+            
+            
+            
+            
+            
+            <span id="busuanzi_container_site_pv">
+                |&nbsp;<i class="far fa-eye"></i>&nbsp;总访问量:&nbsp;<span id="busuanzi_value_site_pv"
+                    class="white-color"></span>&nbsp;次
+            </span>
+            
+            
+            <span id="busuanzi_container_site_uv">
+                |&nbsp;<i class="fas fa-users"></i>&nbsp;总访问人数:&nbsp;<span id="busuanzi_value_site_uv"
+                    class="white-color"></span>&nbsp;人
+            </span>
+            
+            <br>
+            
+            <span id="sitetime">载入运行时间...</span>
+            <script>
+                function siteTime() {
+                    var seconds = 1000;
+                    var minutes = seconds * 60;
+                    var hours = minutes * 60;
+                    var days = hours * 24;
+                    var years = days * 365;
+                    var today = new Date();
+                    var startYear = "2019";
+                    var startMonth = "6";
+                    var startDate = "28";
+                    var startHour = "0";
+                    var startMinute = "0";
+                    var startSecond = "0";
+                    var todayYear = today.getFullYear();
+                    var todayMonth = today.getMonth() + 1;
+                    var todayDate = today.getDate();
+                    var todayHour = today.getHours();
+                    var todayMinute = today.getMinutes();
+                    var todaySecond = today.getSeconds();
+                    var t1 = Date.UTC(startYear, startMonth, startDate, startHour, startMinute, startSecond);
+                    var t2 = Date.UTC(todayYear, todayMonth, todayDate, todayHour, todayMinute, todaySecond);
+                    var diff = t2 - t1;
+                    var diffYears = Math.floor(diff / years);
+                    var diffDays = Math.floor((diff / days) - diffYears * 365);
+                    var diffHours = Math.floor((diff - (diffYears * 365 + diffDays) * days) / hours);
+                    var diffMinutes = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours) /
+                        minutes);
+                    var diffSeconds = Math.floor((diff - (diffYears * 365 + diffDays) * days - diffHours * hours -
+                        diffMinutes * minutes) / seconds);
+                    if (startYear == todayYear) {
+                        document.getElementById("year").innerHTML = todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffDays + " 天 " + diffHours +
+                            " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    } else {
+                        document.getElementById("year").innerHTML = startYear + " - " + todayYear;
+                        document.getElementById("sitetime").innerHTML = "本站已安全运行 " + diffYears + " 年 " + diffDays +
+                            " 天 " + diffHours + " 小时 " + diffMinutes + " 分钟 " + diffSeconds + " 秒";
+                    }
+                }
+                setInterval(siteTime, 1000);
+            </script>
+            
+            <br>
+            
+        </div>
+        <div class="col s12 m4 l4 social-link social-statis">
+    <a href="https://github.com/chenxinshinian" class="tooltipped" target="_blank" data-tooltip="访问我的GitHub" data-position="top" data-delay="50">
+        <i class="fab fa-github"></i>
+    </a>
+
+
+
+    <a href="mailto:1533164866@qq.com" class="tooltipped" target="_blank" data-tooltip="邮件联系我" data-position="top" data-delay="50">
+        <i class="fas fa-envelope-open"></i>
+    </a>
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <a href="/atom.xml" class="tooltipped" target="_blank" data-tooltip="RSS 订阅" data-position="top" data-delay="50">
+        <i class="fas fa-rss"></i>
+    </a>
+
+
+
+
+
+    <a href="https://chenxinshinian.github.io" class="tooltipped" target="_blank" data-tooltip="访问我的学习文档" data-position="top" data-delay="50">
+        <i class="fas fa-pen"></i>
+    </a>
+
+
+
+</div>
+    </div>
+</footer>
+
+<div class="progress-bar"></div>
+
+
+    <!-- 搜索遮罩框 -->
+<div id="searchModal" class="modal">
+    <div class="modal-content">
+        <div class="search-header">
+            <span class="title"><i class="fas fa-search"></i>&nbsp;&nbsp;搜索</span>
+            <input type="search" id="searchInput" name="s" placeholder="请输入搜索的关键字"
+                   class="search-input">
+        </div>
+        <div id="searchResult"></div>
+    </div>
+</div>
+
+<script src="/js/search.js"></script>
+<script type="text/javascript">
+$(function () {
+    searchFunc("/" + "search.xml", 'searchInput', 'searchResult');
+});
+</script>
+    <!-- 回到顶部按钮 -->
+<div id="backTop" class="top-scroll">
+    <a class="btn-floating btn-large waves-effect waves-light" href="#!">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</div>
+
+
+    <script src="/libs/materialize/materialize.min.js"></script>
+    <script src="/libs/masonry/masonry.pkgd.min.js"></script>
+    <script src="/libs/aos/aos.js"></script>
+    <script src="/libs/scrollprogress/scrollProgress.min.js"></script>
+    <script src="/libs/lightGallery/js/lightgallery-all.min.js"></script>
+    <script src="/js/matery.js"></script>
+
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+
+
+    <!-- Baidu Analytics -->
+
+    <!-- Baidu Push -->
+
+<script>
+    (function () {
+        var bp = document.createElement('script');
+        var curProtocol = window.location.protocol.split(':')[0];
+        if (curProtocol === 'https') {
+            bp.src = 'https://zz.bdstatic.com/linksubmit/push.js';
+        } else {
+            bp.src = 'http://push.zhanzhang.baidu.com/push.js';
+        }
+        var s = document.getElementsByTagName("script")[0];
+        s.parentNode.insertBefore(bp, s);
+    })();
+</script>
+
+    
+    
+    <script async src="/libs/others/busuanzi.pure.mini.js"></script>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    
+    
+    <script src="/libs/instantpage/instantpage.js" type="module"></script>
+    
+
+</body>
+
+</html>
