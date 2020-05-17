@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="https://chenxinshinian.com/"/>
-  <updated>2020-05-17T07:45:22.022Z</updated>
+  <updated>2020-05-17T08:11:25.132Z</updated>
   <id>https://chenxinshinian.com/</id>
   
   <author>
@@ -17,11 +17,11 @@
   <generator uri="https://hexo.io/">Hexo</generator>
   
   <entry>
-    <title>数据库维护和优化</title>
-    <link href="https://chenxinshinian.com/2020/05/17/shu-ju-ku-wei-hu-he-you-hua/"/>
-    <id>https://chenxinshinian.com/2020/05/17/shu-ju-ku-wei-hu-he-you-hua/</id>
-    <published>2020-05-17T07:45:22.000Z</published>
-    <updated>2020-05-17T07:45:22.022Z</updated>
+    <title>解决博客访问此书不正确问题</title>
+    <link href="https://chenxinshinian.com/2020/05/14/jie-jue-bo-ke-fang-wen-ci-shu-bu-zheng-que-wen-ti/"/>
+    <id>https://chenxinshinian.com/2020/05/14/jie-jue-bo-ke-fang-wen-ci-shu-bu-zheng-que-wen-ti/</id>
+    <published>2020-05-14T07:59:38.000Z</published>
+    <updated>2020-05-17T08:11:25.132Z</updated>
     
     <summary type="html">
     
@@ -29,17 +29,17 @@
       
         
         
-          &lt;script&gt;
-        document.querySelectorAll(&#39;.github-emoji&#39;)
-          .forEach(el =&gt; {
-            if (!el.dataset.src) { return; }
-       
+          &lt;p&gt;&lt;img
         
       
     
     </summary>
     
     
+      <category term="记录" scheme="https://chenxinshinian.com/categories/%E8%AE%B0%E5%BD%95/"/>
+    
+    
+      <category term="blog" scheme="https://chenxinshinian.com/tags/blog/"/>
     
   </entry>
   
@@ -58,6 +58,33 @@
         
           &lt;p&gt;&lt;img src=&quot;https://chenxinshinian.oss-cn-beijing.aliyuncs.com/img/d22bbcc815668a3244e4237c1731b98d8ee370a3.jpg&quot;&gt;&lt;/p&gt;
 &lt;h4
+        
+      
+    
+    </summary>
+    
+    
+      <category term="数据库" scheme="https://chenxinshinian.com/categories/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+    
+      <category term="数据库设计" scheme="https://chenxinshinian.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93%E8%AE%BE%E8%AE%A1/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>数据库维护和优化</title>
+    <link href="https://chenxinshinian.com/2020/05/11/shu-ju-ku-wei-hu-he-you-hua/"/>
+    <id>https://chenxinshinian.com/2020/05/11/shu-ju-ku-wei-hu-he-you-hua/</id>
+    <published>2020-05-11T07:45:22.000Z</published>
+    <updated>2020-05-17T07:56:36.439Z</updated>
+    
+    <summary type="html">
+    
+      
+      
+        
+        
+          &lt;p&gt;&lt;img
         
       
     
@@ -160,7 +187,7 @@
     <link href="https://chenxinshinian.com/2020/04/03/guan-yu-ben-bo-ke/"/>
     <id>https://chenxinshinian.com/2020/04/03/guan-yu-ben-bo-ke/</id>
     <published>2020-04-03T14:24:53.000Z</published>
-    <updated>2020-05-05T19:02:44.000Z</updated>
+    <updated>2020-05-17T08:00:34.345Z</updated>
     
     <summary type="html">
     
@@ -179,6 +206,10 @@
     </summary>
     
     
+      <category term="记录" scheme="https://chenxinshinian.com/categories/%E8%AE%B0%E5%BD%95/"/>
+    
+    
+      <category term="blog" scheme="https://chenxinshinian.com/tags/blog/"/>
     
   </entry>
   
@@ -187,7 +218,7 @@
     <link href="https://chenxinshinian.com/2020/03/02/mian-fei-ke-xue-shang-wang/"/>
     <id>https://chenxinshinian.com/2020/03/02/mian-fei-ke-xue-shang-wang/</id>
     <published>2020-03-01T23:14:26.000Z</published>
-    <updated>2020-05-05T19:02:44.000Z</updated>
+    <updated>2020-05-17T08:00:39.861Z</updated>
     
     <summary type="html">
     
